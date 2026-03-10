@@ -7,10 +7,10 @@ import router from './router'
 const app = createApp(App)
 app.use(router)
 
-// 404.html에서 리다이렉트된 경로 처리
-const path = (location.hash.slice(1) || location.pathname.slice(1)).replace(/^\/eduu\/?\?\/?/, '')
-if (path && path !== location.pathname) {
-  router.replace('/' + path.replace(/~and~/g, '&'))
+// 404.html에서 리다이렉트된 경로 처리 (?/path 형태)
+if (location.search.includes('?/')) {
+  const path = location.search.slice(2).split('&')[0].replace(/~and~/g, '&')
+  router.replace('/' + path)
 }
 
 app.mount('#app')
