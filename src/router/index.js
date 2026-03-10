@@ -1,4 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
+
+// GitHub Pages 배포를 위한 base 경로
+const base = import.meta.env.BASE_URL
 import { supabase } from '../utils/supabase'
 import PostList from '../views/PostList.vue'
 import PostDetail from '../views/PostDetail.vue'
@@ -47,7 +50,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(base),
   routes,
 })
 

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Redirecting...</title>
+    <script>
+      // GitHub Pages 404.html - 모든 경로를 index.html로 리다이렉트
+      // base 경로: /eduu/
+      var pathSegmentsToKeep = 1; // /eduu/를 유지
+      var l = window.location;
+      var basePath = '/eduu/';
+      
+      // 현재 경로가 base 경로로 시작하는지 확인
+      if (l.pathname.indexOf(basePath) === 0) {
+        var pathAfterBase = l.pathname.slice(basePath.length - 1);
+        l.replace(
+          l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+          basePath + '?/' + pathAfterBase.replace(/^\//, '').replace(/&/g, '~and~') +
+          (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+          l.hash
+        );
+      } else {
+        // base 경로가 없으면 그냥 index.html로
+        l.replace(basePath + 'index.html');
+      }
+    </script>
+  </head>
+  <body>
+    <p>Redirecting...</p>
+  </body>
+</html>
